@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Knockout Firebase Cart</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="[[*description]]">
+<meta name="keywords" content="[[*keywords]]">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="http://fonts.googleapis.com/css?family=Roboto|Open+Sans:400,400italic,600" rel="stylesheet">
+<link rel="stylesheet" href="css/brash.css">
+<link rel="stylesheet" href="css/cart.css">
+
+<script>
+var koCart = [
+    {name: 'ACE 16.3 Indoor',price: '60',quantity:'2'}
+];
+
+var koProducts = [
+    {
+        name: 'ACE 16.3 Indoor',
+        price: '60',
+        desc:  'Color Silver Metallic / Black. A PRIMEMESH upper delivers precise control and perfect fit',
+        link:  'http://www.adidas.com/us/ace-16.3-primemesh-indoor-shoes/AQ3423.html',
+        img:   'img/ace16indoor.jpeg'
+    },
+    {
+        name: 'Ace Glider Ball',
+        price: '20',
+        desc:  'A FULL-SIZE SOCCER BALL FOR DAILY DRILLS, PRACTICE AND PLAY.',
+        link:  'http://www.adidas.com/us/ace-glider-soccer-ball/AP1644.html',
+        img:   'img/ace-glider-ball.jpeg'
+    },
+    {
+        name: 'Climacool Jersey',
+        price: '40',
+        desc:  'A VENTILATED SLIM-FIT SOCCER JERSEY INSPIRED BY MESSI.',
+        link:  'http://www.adidas.com/us/messi-climacool-performance-jersey/AZ6166.html',
+        img:   'img/climacool.jpeg'
+    }
+];
+
+</script>
+
+</head>
+<body>
+<a href="#main" title="Skip to Content" class="sr-only">Skip to Content</a>
+<header role="banner" tabindex="0">
+    <section class="container" tabindex="0">
+        <div id="logo" tabindex="0"><label class="h1">KO Firebase Cart</label></div>
+    </section>
+</header>
+<main id="main" tabindex="0">
+
+    <section class="container" tabindex="0">
+        <div class="cards" data-bind="template:{ name: 'product-card', foreach: products}"></div>
+    </section>
+
+    <hr>
+
+    <table cellspacing="0" cellpadding="0" class="highlight">
+        <thead><tr><th>Product</th><th>Price</th><th>Quantity</th><th>Subtotal</th></tr></thead>
+        <tbody data-bind="template:{ name: 'cart-row', foreach: cart}"></tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3"></td>
+                <td>
+                    <strong>TOTAL:</strong>
+                    $<span data-bind='text: grandTotal()'></span>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+</main>
+
+<script type="text/html" id="product-card">
+    <figure class="card-3">
+        <a data-bind="attr: { href: link, title: name }" target="_blank">
+            <img data-bind="attr: { src: img, alt: name }">
+        </a>
+        <figcaption>
+            <h2>$<span data-bind="text: price"></span></h2>
+            <strong data-bind="text: name"></strong>
+            <p data-bind="text: desc"></p>
+            <button class="btn">ADD TO CART</button>
+        </figcaption>
+    </figure>
+</script>
+
+<script type="text/html" id="cart-row">
+    <tr>
+        <td data-label="Product" data-bind="text: name"></td>
+        <td data-label="Price">$<span data-bind="text: price"></span></td>
+        <td data-label="Quantity" data-bind="text: quantity">1</td>
+        <td data-label="Subtotal">$<span data-bind="text: price*quantity"></span></td>
+    </tr>
+</script>
+<script type="text/javascript" src="js/knockout-3.4.0.js"></script>
+<script type="text/javascript" src="js/ko-cart.js"></script>
+
+</body>
+</html>

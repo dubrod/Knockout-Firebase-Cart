@@ -1,0 +1,7 @@
+h2{color:#00B7D1;}
+tfoot td:last-of-type{
+    background:#efefef;
+    text-align:center;
+    padding:1rem 0;
+    font-size:1.25rem;
+}
