@@ -1,19 +1,34 @@
-function grandTotal(obj) {
-    var self = this;
-    self.grandTotal = ko.pureComputed(function() {
-        var total = 0;
-        for(var i=0; i<obj.length; i++) {
-    		total += parseInt(obj[i]["price"]*obj[i]["quantity"]);
-    	}
-        return total;
-    });
-}
 
 function cartModel() {
-    this.cart = ko.observable(koCart);
-    this.products = koProducts;
+    var self = this;
+    self.products = koProducts;
 
-    grandTotal(this.cart());
+    //build cart rows
+    self.cart = ko.observableArray(koCart);
+
+    //add to cart
+    self.addToCart = function(){
+        self.cart.push(
+            {
+                id:this.id,name: this.name,price: this.price,quantity:1,subtotal:this.price
+            }
+        )
+    }
+
+    //remove from cart
+    self.removeFromCart = function(){
+        self.cart.remove(this);
+    }
+
+    //make grandtotal
+    self.grandTotal = function() {
+        var total = 0;
+        for(var i=0; i<self.cart().length; i++) {
+    		total += parseInt(self.cart()[i]["price"]*self.cart()[i]["quantity"]);
+    	}
+        return total;
+    };
 
 }
+
 ko.applyBindings(new cartModel());

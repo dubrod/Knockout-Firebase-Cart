@@ -14,12 +14,11 @@
 <link rel="stylesheet" href="css/cart.css">
 
 <script>
-var koCart = [
-    {name: 'ACE 16.3 Indoor',price: '60',quantity:'2'}
-];
+var koCart = [];
 
 var koProducts = [
     {
+        id: '1',
         name: 'ACE 16.3 Indoor',
         price: '60',
         desc:  'Color Silver Metallic / Black. A PRIMEMESH upper delivers precise control and perfect fit',
@@ -27,6 +26,7 @@ var koProducts = [
         img:   'img/ace16indoor.jpeg'
     },
     {
+        id: '3',
         name: 'Ace Glider Ball',
         price: '20',
         desc:  'A FULL-SIZE SOCCER BALL FOR DAILY DRILLS, PRACTICE AND PLAY.',
@@ -34,6 +34,7 @@ var koProducts = [
         img:   'img/ace-glider-ball.jpeg'
     },
     {
+        id: '5',
         name: 'Climacool Jersey',
         price: '40',
         desc:  'A VENTILATED SLIM-FIT SOCCER JERSEY INSPIRED BY MESSI.',
@@ -55,17 +56,29 @@ var koProducts = [
 <main id="main" tabindex="0">
 
     <section class="container" tabindex="0">
-        <div class="cards" data-bind="template:{ name: 'product-card', foreach: products}"></div>
+        <div class="cards" data-bind="foreach: products">
+            <figure class="card-3">
+                <a data-bind="attr: { href: link, title: name }" target="_blank">
+                    <img data-bind="attr: { src: img, alt: name }">
+                </a>
+                <figcaption>
+                    <h2>$<span data-bind="text: price"></span></h2>
+                    <strong data-bind="text: name"></strong>
+                    <p data-bind="text: desc"></p>
+                    <button class="btn" data-bind="click: $parent.addToCart">ADD TO CART</button>
+                </figcaption>
+            </figure>
+        </div>
     </section>
 
     <hr>
 
     <table cellspacing="0" cellpadding="0" class="highlight">
-        <thead><tr><th>Product</th><th>Price</th><th>Quantity</th><th>Subtotal</th></tr></thead>
+        <thead><tr><th>Product</th><th>Price</th><th>Quantity</th><th>Subtotal</th><th></th></tr></thead>
         <tbody data-bind="template:{ name: 'cart-row', foreach: cart}"></tbody>
         <tfoot>
             <tr>
-                <td colspan="3"></td>
+                <td colspan="4"></td>
                 <td>
                     <strong>TOTAL:</strong>
                     $<span data-bind='text: grandTotal()'></span>
@@ -76,26 +89,13 @@ var koProducts = [
 
 </main>
 
-<script type="text/html" id="product-card">
-    <figure class="card-3">
-        <a data-bind="attr: { href: link, title: name }" target="_blank">
-            <img data-bind="attr: { src: img, alt: name }">
-        </a>
-        <figcaption>
-            <h2>$<span data-bind="text: price"></span></h2>
-            <strong data-bind="text: name"></strong>
-            <p data-bind="text: desc"></p>
-            <button class="btn">ADD TO CART</button>
-        </figcaption>
-    </figure>
-</script>
-
 <script type="text/html" id="cart-row">
     <tr>
         <td data-label="Product" data-bind="text: name"></td>
         <td data-label="Price">$<span data-bind="text: price"></span></td>
         <td data-label="Quantity" data-bind="text: quantity">1</td>
-        <td data-label="Subtotal">$<span data-bind="text: price*quantity"></span></td>
+        <td data-label="Subtotal">$<span data-bind="text: subtotal"></span></td>
+        <td><button class="btn-secondary-small" data-bind="click: $parent.removeFromCart">REMOVE</button></td>
     </tr>
 </script>
 <script type="text/javascript" src="js/knockout-3.4.0.js"></script>
