@@ -1,6 +1,8 @@
 
 function cartModel() {
     var self = this;
+
+    //assign products array
     self.products = koProducts;
 
     //assign cart array
@@ -16,7 +18,7 @@ function cartModel() {
     self.addToCart = function(){
         self.cart.push(
             {
-                id:this.id,name: this.name,price: this.price,quantity:'1',subtotal:this.price
+                id:this.id,name: this.name,price: this.price,quantity:this.quantity,subtotal:((parseInt(this.price))*(parseInt(this.quantity)))
             }
         )
         //database.ref('/opencarts/'+cartId).set({ cart: self.cart() });

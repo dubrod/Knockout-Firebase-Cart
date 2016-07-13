@@ -31,6 +31,7 @@
                     <h2>$<span data-bind="text: price"></span></h2>
                     <strong data-bind="text: name"></strong>
                     <p data-bind="text: desc"></p>
+                    <input type="text" data-bind='value: quantity, valueUpdate: "afterkeydown"' />
                     <button class="btn" data-bind="click: $parent.addToCart">ADD TO CART</button>
                 </figcaption>
             </figure>
@@ -64,7 +65,8 @@ var koProducts = [
         price: '60',
         desc:  'Color Silver Metallic / Black. A PRIMEMESH upper delivers precise control and perfect fit',
         link:  'http://www.adidas.com/us/ace-16.3-primemesh-indoor-shoes/AQ3423.html',
-        img:   'img/ace16indoor.jpeg'
+        img:   'img/ace16indoor.jpeg',
+        quantity: '1'
     },
     {
         id: '3',
@@ -72,7 +74,8 @@ var koProducts = [
         price: '20',
         desc:  'A FULL-SIZE SOCCER BALL FOR DAILY DRILLS, PRACTICE AND PLAY.',
         link:  'http://www.adidas.com/us/ace-glider-soccer-ball/AP1644.html',
-        img:   'img/ace-glider-ball.jpeg'
+        img:   'img/ace-glider-ball.jpeg',
+        quantity: '1'
     },
     {
         id: '5',
@@ -80,7 +83,8 @@ var koProducts = [
         price: '40',
         desc:  'A VENTILATED SLIM-FIT SOCCER JERSEY INSPIRED BY MESSI.',
         link:  'http://www.adidas.com/us/messi-climacool-performance-jersey/AZ6166.html',
-        img:   'img/climacool.jpeg'
+        img:   'img/climacool.jpeg',
+        quantity: '1'
     }
 ];
 

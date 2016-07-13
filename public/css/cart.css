@@ -5,3 +5,8 @@ tfoot td:last-of-type{
     padding:1rem 0;
     font-size:1.25rem;
 }
+
+figcaption input[type="text"]:not(#search){
+    height:3rem;
+    width:3rem;
+}

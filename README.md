@@ -5,10 +5,9 @@ A Simple Cart Example of using Firebase to save cart data and Knockout JS to upd
 
 ## Roadmap
 
- 1. Integrate Firebase to save `opencarts` vs `completecarts`
- 2. Add Quantity Field with Subtotal calculation
- 3. Add Select Boxes
- 4. Integrate `Checkout Button` to run MODX snippet
+ 1. Integrate Firebase to save `opencarts` vs `completecarts` and other user data
+ 2. Add Select Boxes
+ 3. Integrate `Checkout Button` to run MODX snippet
 
 ## Features
 
@@ -16,3 +15,5 @@ A Simple Cart Example of using Firebase to save cart data and Knockout JS to upd
  2. List Products from JSON Array
  3. Add/Remove from JSON Cart Array
  4. Calculate Total Price
+ 5. Cart Array saved to Local Storage
+ 6. Quantity Field with Subtotal calculation
