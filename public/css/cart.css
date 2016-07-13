@@ -8,5 +8,12 @@ tfoot td:last-of-type{
 
 figcaption input[type="text"]:not(#search){
     height:3rem;
-    width:3rem;
+    width:2.8rem;
+}
+figcaption select{width:10rem;height:3rem;}
+
+
+@media only screen and (max-width: 960px){
+    tfoot{display:block;}
+    tfoot td{padding-left:0 !important;}
 }

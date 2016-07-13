@@ -28,17 +28,10 @@
                     <img data-bind="attr: { src: img, alt: name }">
                 </a>
                 <figcaption>
+                    <h2>$<span data-bind="text: price"></span></h2>
                     <strong data-bind="text: name"></strong>
                     <p data-bind="text: desc"></p>
-                    <h2>$<span data-bind="text: price"></span></h2>
-                    <select data-bind='
-                        visible: options()[0],
-                        options: options(),
-                        optionsCaption: "Select...",
-                        value: options(),
-                        selectedOptions: chosenOptions,
-                        event:{change: $parent.updatePrice}
-                        '></select>
+                    
                     <input type="text" data-bind='value: quantity, valueUpdate: "afterkeydown"' />
                     <button class="btn" data-bind="click: $parent.addToCart">ADD TO CART</button>
                 </figcaption>
@@ -75,7 +68,7 @@ var koProducts = [
         link:  'http://www.adidas.com/us/ace-16.3-primemesh-indoor-shoes/AQ3423.html',
         img:   'img/ace16indoor.jpeg',
         quantity: '1',
-        options:["Size 10 - $40","Size 11 - $50","Size 12 - $60"]
+        options:[{"name":"Size 10","optprice":"10"},{"name":"Size 11","optprice":"11"},{"name":"Size 12","optprice":"12"}]
     },
     {
         id: '3',
@@ -95,7 +88,7 @@ var koProducts = [
         link:  'http://www.adidas.com/us/messi-climacool-performance-jersey/AZ6166.html',
         img:   'img/climacool.jpeg',
         quantity: '1',
-        options:["Large","Medium","Small"]
+        options:[]
     }
 ];
 
