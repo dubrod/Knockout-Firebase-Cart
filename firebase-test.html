@@ -11,6 +11,43 @@
 <link rel="stylesheet" href="css/brash.css">
 <link rel="stylesheet" href="css/cart.css">
 
+<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+  <script>
+    //set cart object
+    var koCart = [];
+
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyD-GxZG0qEqkDiZr_8yxf090WJ9SDrAWDA",
+      authDomain: "knockout-firebase-cart.firebaseapp.com",
+      databaseURL: "https://knockout-firebase-cart.firebaseio.com",
+      storageBucket: "knockout-firebase-cart.appspot.com",
+    };
+    firebase.initializeApp(config);
+
+    var database = firebase.database();
+
+    //check if they are new
+    var cartId = localStorage.getItem('cartId');
+
+    if(cartId){
+
+        database.ref('/opencarts/'+cartId).once("value", function(snapshot) {
+            var koCart = JSON.stringify(snapshot.val().cart);
+            console.log(koCart);
+        });
+
+        //var koCart = [{"id":"3","name":"Ace Glider Ball","price":"20","quantity":1,"subtotal":"20"},{"id":"1","name":"ACE 16.3 Indoor","price":"60","quantity":1,"subtotal":"60"}];
+
+    } else {
+
+        var cartId = "koCart"+Date.now();
+        localStorage.setItem('cartId',cartId);
+
+    }
+
+</script>
+
 </head>
 <body>
 <a href="#main" title="Skip to Content" class="sr-only">Skip to Content</a>
@@ -38,6 +75,10 @@
     </section>
 
     <hr>
+
+    <div class="mb1">
+        <p><span id="greeting"></span> <strong><span id="lsCartId"></span></strong></p>
+    </div>
 
     <table cellspacing="0" cellpadding="0" class="highlight">
         <thead><tr><th>Product</th><th>Price</th><th>Quantity</th><th>Subtotal</th><th></th></tr></thead>
@@ -95,6 +136,24 @@ var koProducts = [
         <td><button class="btn-secondary-small" data-bind="click: $parent.removeFromCart">REMOVE</button></td>
     </tr>
 </script>
+<script>
+//just some greeting text. not necessary
+if(cartId){
+    //greeting
+    var greetElem = document.getElementById("greeting");
+    greetElem.innerHTML = "Welcome <strong>BACK</strong> to the store, your Cart ID is";
+    var lsCartIdElem = document.getElementById("lsCartId");
+    lsCartIdElem.innerHTML = cartId;
+
+} else {
+    //greeting
+    var greetElem = document.getElementById("greeting");
+    greetElem.innerHTML = "Welcome to the store, your Cart ID is";
+    var lsCartIdElem = document.getElementById("lsCartId");
+    lsCartIdElem.innerHTML = cartId;
+}
+</script>
+
 <script type="text/javascript" src="js/knockout-3.4.0.js"></script>
 <script type="text/javascript" src="js/ko-cart.js"></script>
 

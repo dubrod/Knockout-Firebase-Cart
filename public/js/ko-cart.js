@@ -3,21 +3,30 @@ function cartModel() {
     var self = this;
     self.products = koProducts;
 
-    //build cart rows
+    //assign cart array
+    var ls = localStorage.getItem('cartStorage');
+    if(ls){
+        var koCart = JSON.parse(localStorage.getItem('cartStorage'));
+    } else {
+        var koCart = [];
+    }
     self.cart = ko.observableArray(koCart);
 
     //add to cart
     self.addToCart = function(){
         self.cart.push(
             {
-                id:this.id,name: this.name,price: this.price,quantity:1,subtotal:this.price
+                id:this.id,name: this.name,price: this.price,quantity:'1',subtotal:this.price
             }
         )
+        //database.ref('/opencarts/'+cartId).set({ cart: self.cart() });
+        localStorage.setItem('cartStorage',JSON.stringify(self.cart()));
     }
 
     //remove from cart
     self.removeFromCart = function(){
         self.cart.remove(this);
+        localStorage.setItem('cartStorage',JSON.stringify(self.cart()));
     }
 
     //make grandtotal
